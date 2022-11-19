@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Microsoft.VisualBasic;
+
 namespace Zip.InstallmentsService
 {
     /// <summary>
@@ -12,8 +15,22 @@ namespace Zip.InstallmentsService
         /// <returns>The PaymentPlan created with all properties set.</returns>
         public PaymentPlan CreatePaymentPlan(decimal purchaseAmount)
         {
-            // TODO
-            return new PaymentPlan();
+            Installment insObj = new Installment();
+            var inscount = 4;
+            insObj.Amount = purchaseAmount / inscount;
+            insObj.DueDate = System.DateTime.Now;
+            List<Installment> insList = new List<Installment>();
+            
+            PaymentPlan pp = new PaymentPlan();
+
+            for (int i = 0; i < inscount;  i++)
+            {                
+                    insObj.DueDate.AddDays(i*14);                
+                
+            }
+            
+            
+            return pp;
         }
     }
 }
